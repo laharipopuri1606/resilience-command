@@ -1,0 +1,191 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * RESILIENCE COMMAND — emergency operations design system.
+ * Dark ops console: graphite substrate, signal amber, hazard red, live cyan.
+ * All colors are oklch semantic tokens. Never hardcode colors in components.
+ */
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  --font-display: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-panel: var(--panel);
+  --color-panel-edge: var(--panel-edge);
+
+  --color-critical: var(--critical);
+  --color-severe: var(--severe);
+  --color-moderate: var(--moderate);
+  --color-watch: var(--watch);
+  --color-ok: var(--ok);
+
+  --color-agent-1: var(--agent-1);
+  --color-agent-2: var(--agent-2);
+  --color-agent-3: var(--agent-3);
+  --color-agent-4: var(--agent-4);
+  --color-agent-5: var(--agent-5);
+  --color-agent-6: var(--agent-6);
+  --color-agent-7: var(--agent-7);
+  --color-agent-8: var(--agent-8);
+
+  --shadow-panel: 0 1px 0 0 oklch(1 0 0 / 6%) inset, 0 18px 40px -24px oklch(0 0 0 / 80%);
+  --shadow-glow: 0 0 0 1px var(--ring), 0 0 28px -6px var(--ring);
+
+  --animate-pulse-ring: pulse-ring 2.4s ease-out infinite;
+  --animate-sweep: sweep 7s linear infinite;
+  --animate-rise: rise 0.35s ease-out both;
+}
+
+:root {
+  --radius: 0.35rem;
+
+  --background: oklch(0.17 0.017 240);
+  --foreground: oklch(0.94 0.008 240);
+  --panel: oklch(0.213 0.019 242);
+  --panel-edge: oklch(0.29 0.024 243);
+  --card: oklch(0.213 0.019 242);
+  --card-foreground: oklch(0.94 0.008 240);
+  --popover: oklch(0.205 0.019 242);
+  --popover-foreground: oklch(0.94 0.008 240);
+
+  --primary: oklch(0.79 0.16 71);
+  --primary-foreground: oklch(0.19 0.03 60);
+  --secondary: oklch(0.27 0.023 243);
+  --secondary-foreground: oklch(0.92 0.008 240);
+  --muted: oklch(0.25 0.02 243);
+  --muted-foreground: oklch(0.66 0.02 245);
+  --accent: oklch(0.78 0.13 200);
+  --accent-foreground: oklch(0.18 0.03 220);
+  --destructive: oklch(0.62 0.22 25);
+  --destructive-foreground: oklch(0.97 0.01 25);
+
+  --border: oklch(0.3 0.024 243);
+  --input: oklch(0.28 0.022 243);
+  --ring: oklch(0.78 0.13 200);
+
+  --critical: oklch(0.63 0.23 22);
+  --severe: oklch(0.72 0.19 45);
+  --moderate: oklch(0.82 0.16 85);
+  --watch: oklch(0.75 0.12 200);
+  --ok: oklch(0.75 0.16 155);
+
+  --agent-1: oklch(0.78 0.13 200);
+  --agent-2: oklch(0.72 0.19 45);
+  --agent-3: oklch(0.76 0.15 155);
+  --agent-4: oklch(0.79 0.16 71);
+  --agent-5: oklch(0.72 0.14 320);
+  --agent-6: oklch(0.74 0.14 255);
+  --agent-7: oklch(0.8 0.13 120);
+  --agent-8: oklch(0.7 0.02 245);
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.7);
+    opacity: 0.75;
+  }
+  100% {
+    transform: scale(2.6);
+    opacity: 0;
+  }
+}
+
+@keyframes sweep {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+@utility panel {
+  background-color: var(--panel);
+  border: 1px solid var(--panel-edge);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-panel);
+}
+
+@utility label-xs {
+  font-family: var(--font-mono);
+  font-size: 0.625rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted-foreground);
+}
+
+@layer base {
+  * {
+    border-color: var(--color-border);
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    background-image:
+      radial-gradient(
+        1100px 600px at 78% -10%,
+        oklch(0.78 0.13 200 / 9%),
+        transparent 60%
+      ),
+      radial-gradient(900px 500px at 5% 105%, oklch(0.72 0.19 45 / 8%), transparent 60%),
+      linear-gradient(oklch(1 0 0 / 2.2%) 1px, transparent 1px),
+      linear-gradient(90deg, oklch(1 0 0 / 2.2%) 1px, transparent 1px);
+    background-size:
+      auto,
+      auto,
+      44px 44px,
+      44px 44px;
+  }
+
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--panel-edge);
+    border-radius: 99px;
+  }
+}
